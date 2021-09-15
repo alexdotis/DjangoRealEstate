@@ -19,7 +19,7 @@ You can see the template [here](https://themeforest.net/item/manland-bootstrap-l
    - All agents and users have the same password `qwerty`
    - You can use the options `--properties (int)` `--agents (int)` `--blogs (int)` `--users (int)` if you want to change the numbers
 6. `python3 manage.py createsuperuser`
-7. **Note** : Before you run the server, please go to `RealEstate/settings.py` and uncomment the comments.
+7. **Note** : Before you run the server, please go to `RealEstate/urls.py` and uncomment the comments.
 8. `python3 manage.py runserver`
 
 You are good to go.
