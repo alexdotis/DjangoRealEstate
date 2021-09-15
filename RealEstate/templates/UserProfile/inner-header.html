@@ -1,0 +1,20 @@
+<!-- Inner Header -->
+<section class="bg-dark py-5 user-header">
+    <div class="container">
+        <div class="row align-items-center mt-2 mb-5 pb-4">
+            <div class="col">
+                <!-- Heading -->
+                <h1 class="text-white mb-2">
+                   {% if user.is_agent %}Agent{% endif %} User Profile
+                </h1>
+                <!-- Text -->
+                <h6 class="font-weight-normal text-white-50 mb-0">
+                    Settings for {{user.email}}</a>
+                </h6>
+            </div>
+      
+        </div>
+        <!-- / .row -->
+    </div>
+    <!-- / .container -->
+</section>

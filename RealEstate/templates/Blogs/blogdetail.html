@@ -1,0 +1,68 @@
+{% extends 'Blogs/index.html' %}
+{% load static %}
+{% block meta_tags %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="{{object.text}}">
+<meta name="author" content="Manland">
+{% endblock meta_tags %}
+{% block blog-content %}
+{% include 'snippets/breadcrumbs.html' with title='Blog' current_title=object.title %}
+
+<!-- Properties List -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8">
+                <div class="card blog-card padding-card">
+                    <img class="card-img-top" src="{{object.image.url}}" alt="Card image cap">
+                    <div class="card-body">
+                        <span class="badge badge-success">Manland Team</span>
+
+                        <h2>{{object.title}}</h2>
+                        <h6 class="mb-3"><i class="mdi mdi-calendar-text"></i>{{object.created_at}}</h6>
+
+                        {{object.text|safe}}
+                    </div>
+                    <div class="card-footer">
+                        <div class="footer-social"><span>Share</span> : &nbsp;
+                            <a href="#"><i class="mdi mdi-facebook"></i></a>
+                            <a href="#"><i class="mdi mdi-twitter"></i></a>
+                            <a href="#"><i class="mdi mdi-instagram"></i></a>
+                            <a href="#"><i class="mdi mdi-google"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="card sidebar-card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Blog Search</h5>
+                        
+                        <div id="auto">
+                        <p v-if="errors" style="color:red">[[errors]]</p>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="Type and hit enter"
+                                aria-label="Recipient's username" aria-describedby="basic-addon2" type="text"
+                                v-model="filterInput" list="title">
+                            <datalist id="title" >
+                                <option v-for="(item,i) in match" :key="i" :value="item.title">
+                            </datalist>
+                            <div class="input-group-append">
+                                <button @click.prevent="goto" class="btn btn-primary py-1 px-3" type="button"><i
+                                        class="mdi mdi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'Blogs/sidebars/popular-posts.html' %}
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Properties List -->
+
+<script src="{% static 'js/blog-auto.js'%}"></script>
+{% endblock %}

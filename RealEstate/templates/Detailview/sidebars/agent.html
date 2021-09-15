@@ -1,0 +1,26 @@
+  <div class="card sidebar-card">
+      <div class="card-body">
+          <h5 class="card-title mb-4">About Agent - {{agent.company_name}}</h5>
+          <div id="featured-properties">
+              <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <div class="card card-list">
+                          <a href="{% url 'agency_profile' user=agent.company_name %}">
+
+                          {% if agent.image %}<img class="card-img-top" src="{{agent.image.url}}" alt="Card image cap">{% endif %}    
+                              <div class="card-body pb-0">
+                                  <h5 class="card-title mb-4">{{agent.user.username}}</h5>
+                                  <h6 class="card-subtitle mb-3 text-muted"><i class="mdi mdi-phone"></i>
+                                      {{agent.phone}}</h6>
+                                  <h6 class="card-subtitle mb-3 text-muted"><i class="mdi mdi-email"></i>
+                                      {{agent.user.email}}</h6>
+                                  <h6 class="card-subtitle text-muted"><i class="mdi mdi-link"></i>
+                                      {{agent.website}}</h6>
+                              </div>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>

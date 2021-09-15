@@ -1,0 +1,14 @@
+{% load  blog_tags %}
+{% topblogs as blogs  %}
+<div class="card sidebar-card">
+    <div class="card-body">
+        <h5 class="card-title mb-4">Popular Posts</h5>
+        {% for blog in blogs %}
+        <a href="{% url 'blog_detail' slug=blog.slug %}">
+            <h6>{{blog.title}}</h6>
+        </a>
+        <p class="mb-0"><i class="mdi mdi-calendar-text"></i> {{blog.created_at}}</p>
+        <hr>
+        {% endfor %}
+    </div>
+</div>

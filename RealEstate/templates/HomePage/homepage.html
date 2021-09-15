@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home page{% endblock title %}
+{% block meta_tags %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Welcome to Homepage">
+<meta name="author" content="Webartinfo">
+{% endblock meta_tags %}
+
+{% block content %}
+
+
+<section class="site-slider">
+   <div id="siteslider" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+         <li data-target="#siteslider" data-slide-to="0" class="active"></li>
+         <li data-target="#siteslider" data-slide-to="1"></li>
+         <li data-target="#siteslider" data-slide-to="2"></li>
+         <li data-target="#siteslider" data-slide-to="3"></li>
+         <li data-target="#siteslider" data-slide-to="4"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+         <div class="carousel-item active" style="background-image: url('{% static 'img/slider/8.jpg' %}')">
+            <div class="overlay"></div>
+         </div>
+         <div class="carousel-item" style="background-image: url('{% static 'img/slider/98.jpg' %}')">
+            <div class="overlay"></div>
+         </div>
+         <div class="carousel-item" style="background-image: url('{% static 'img/slider/135.jpg' %}')">
+            <div class="overlay"></div>
+         </div>
+         <div class="carousel-item" style="background-image: url('{% static 'img/slider/214.jpg' %}')">
+            <div class="overlay"></div>
+         </div>
+         <div class="carousel-item" style="background-image: url('{% static 'img/slider/322.jpg' %}')">
+            <div class="overlay"></div>
+         </div>
+      </div>
+      <a class="carousel-control-prev" href="#siteslider" role="button" data-slide="prev">
+         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+         <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#siteslider" role="button" data-slide="next">
+         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+         <span class="sr-only">Next</span>
+      </a>
+   </div>
+   <div class="slider-form">
+      <div class="container">
+         <div class="text-center mb-5">
+            <h6 class="subtitle mb-1 mt-0 text-shadow text-dark">Uncover the best offers on the real estate
+               market.
+            </h6>
+            <h1 class="display-4 mt-0 font-weight-bold text-shadow">Let us guide you home
+            </h1>
+         </div>
+         <!-- To do Form-->
+         <form action='{% url 'listing' %}'>
+            <div class="row no-gutters">
+
+               <div class="col-md-5">
+                  <div class="input-group">
+                     <div class="input-group-addon"><i class="mdi mdi-google-maps"></i></div>
+                     {{filter.form.city}}
+
+                  </div>
+               </div>
+               <div class="col-md-5">
+                  <div class="input-group">
+                     <div class="input-group-addon"><i class="mdi mdi-security-home"></i></div>
+                     {{filter.form.property_type}}
+                  </div>
+               </div>
+               <div class="col-md-2">
+                  <button type="submit" class="btn btn-success btn-block no-radius font-weight-bold">SEARCH</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+</section>
+<!-- End Main Slider With Form -->
+
+<!-- Properties List -->
+{% include 'HomePage/properties-list.html' %}
+
+<!-- End Properties List -->
+
+{% include 'HomePage/trusted-agents.html' %}
+
+<!-- Plans -->
+{% include 'HomePage/plans.html' %}
+<!-- End Plans -->
+
+{% include 'HomePage/blogs.html' %}
+
+
+{% endblock content %}
+
+
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock footer %}

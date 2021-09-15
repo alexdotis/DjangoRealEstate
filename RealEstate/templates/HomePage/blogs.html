@@ -1,0 +1,39 @@
+<!-- Blog -->
+{% load blog_tags %}
+{% load thumbnail %}
+{% get_blogs as blogs %}
+<section class="section-padding bg-white">
+   <div class="section-title text-center mb-5">
+      <a href="{% url 'blog_list' %}">
+         <h2>Blogs We Wrote For You</h2>
+      </a>
+      <p>Lorem ipsum dolor sit amet.</p>
+   </div>
+   <div class="container">
+      <div class="row">
+      {% for blog in blogs %}
+         <div class="col-lg-4 col-md-4">
+            <div class="card blog-card">
+               <a href="{% url 'blog_detail' slug=blog.slug %}">
+                 {% thumbnail blog.image "500x500" crop="center" as im %}
+                  <img class="card-img-top" src="{{ im.url }}">
+                  {% endthumbnail %}
+                  <div class="card-body">
+                     <span class="badge badge-success">Manland Team</span>
+                     <h6>{{blog.title}}</h6>
+                     <p class="mb-0">{{blog.text|truncatewords:60|safe}}
+                     </p>
+                  </div>
+                  <div class="card-footer">
+                     <p class="mb-0">
+                         On {{blog.created_at}}
+                     </p>
+                  </div>
+               </a>
+            </div>
+         </div>
+    {% endfor %}
+      </div>
+   </div>
+</section>
+<!-- End Blog -->

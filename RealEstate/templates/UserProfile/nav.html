@@ -1,0 +1,49 @@
+<div class="col-lg-3 col-md-3">
+    <!-- Collapse -->
+    <div class="card padding-card tab-view user-pages-sidebar">
+        <div class="card-body">
+            <!-- Heading -->
+            <h6 class="text-uppercase mt-0 mb-3">
+                Account
+            </h6>
+            {% with request.resolver_match.url_name as url_name %}
+            <ul class="nav">
+                <li class="nav-item">
+                    {% if user.is_agent %}
+
+                    <a class="nav-link {% if url_name == 'agent_profile' %}active text-success{% endif %}"
+                        href="{% url 'agent_profile' pk=user.pk %}">User Profile</a>
+
+                    {% else %}
+                    <a class="nav-link {% if url_name == 'user_profile' %}active text-success{% endif %}"
+                        href="{% url 'user_profile' pk=user.pk %}">User Profile</a>
+                    {% endif %}
+                </li>
+                {% if user.is_agent %}
+                <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'user_assigned_properties' %}active text-success{% endif %}"
+                        href="{% url 'user_assigned_properties' %}">Request Properties</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                {% if user.is_agent %}
+                    <a class="nav-link {% if url_name == 'agent_property_list' %} active text-success {% endif %}" href="{% url 'agent_property_list' %}">My Properties</a>
+                    {% else %}
+                    <a class="nav-link {% if url_name == 'user_properties' %} active text-success {% endif %}" href="{% url 'user_properties' %}">My Properties</a>
+                    {% endif %}
+                </li>
+              
+                <li class="nav-item">
+                    {% if user.is_agent %}
+                    <a class="nav-link {% if url_name == 'agent_create_property' %} active text-success {% endif %}"
+                        href="{% url 'agent_create_property' %}">Add Property agent</a>
+                    {% else %}
+                    <a class="nav-link {% if url_name == 'user_create_property' %} active text-success {% endif %}"
+                        href="{% url 'user_create_property' %}">Add Property</a>
+                    {% endif %}
+                </li>
+            </ul>
+            {% endwith %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}{{object.title}}{% endblock title %}
+
+{% block meta_tags %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="For {{object.get_status_display}} on {{object.address}}">
+<meta name="author" content="Webartinfo">
+{% endblock meta_tags %}
+
+
+{% block content %}
+
+{% include 'Detailview/snippets/header_slider.html' %}
+
+<!-- Property Single Slider -->
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            {% include 'Detailview/snippets/property_card.html' %}
+            <div class="col-lg-4 col-md-4">
+                {% include 'Detailview/sidebars/agent.html' %}
+                {% include 'Detailview/sidebars/request_showing.html' %}
+                {% include 'Detailview/sidebars/similar_properties.html' %}
+                {% include 'Detailview/sidebars/mortage_calc.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

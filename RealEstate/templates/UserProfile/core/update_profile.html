@@ -1,0 +1,18 @@
+{% extends 'UserProfile/index.html' %}
+
+{% block profile-content %}
+<div class="col-lg-9 col-md-9">
+    <form method="POST" {% if user.is_agent %} enctype="multipart/form-data"{% endif %}>
+        {% csrf_token %}
+        <div class="card padding-card">
+            <div class="card-body">
+                <h5 class="card-title mb-4">Personal Details</h5>
+                {% if user.is_agent %} {{base_form.as_p}} {% endif %}
+                {{form.as_p}}
+            </div>
+        </div>
+        {% include 'UserProfile/snippets/change_password.html' %}
+        <button type="submit" class="btn btn-success">SAVE EDITS</button>
+    </form>
+</div>
+{% endblock profile-content %}

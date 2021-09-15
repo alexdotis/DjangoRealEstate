@@ -1,0 +1,83 @@
+ {% load static %}
+ <!-- Main Slider With Form -->
+ <section class="site-slider">
+     <div id="siteslider" class="carousel slide" data-ride="carousel">
+         <ol class="carousel-indicators">
+             <li data-target="#siteslider" data-slide-to="0" class="active"></li>
+             <li data-target="#siteslider" data-slide-to="1"></li>
+         </ol>
+         <div class="carousel-inner" role="listbox">
+             <div class="carousel-item active" style="background-image: url('{% static 'img/slider/214.jpg' %}')">
+                 <div class="overlay"></div>
+             </div>
+             <div class="carousel-item" style="background-image: url('{% static 'img/slider/322.jpg' %}')">
+                 <div class="overlay"></div>
+             </div>
+         </div>
+         <a class="carousel-control-prev" href="#siteslider" role="button" data-slide="prev">
+             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+             <span class="sr-only">Previous</span>
+         </a>
+         <a class="carousel-control-next" href="#siteslider" role="button" data-slide="next">
+             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+             <span class="sr-only">Next</span>
+         </a>
+     </div>
+     <div class="slider-form inner-page-form">
+         <div class="container">
+             <h1 class="text-center mb-5">Find Your Favorite Property</h1>
+             <form method='GET'>
+                 <div class="row no-gutters">
+                     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                         <div class="input-group">
+                             <div class="input-group-addon"><i class="mdi mdi-map-marker-multiple"></i></div>
+                             {{filter.form.city}}
+                            
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                         <div class="input-group">
+                             <div class="input-group-addon"><i class="mdi mdi-city"></i></div>
+                            {{filter.form.status}}
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                         <div class="input-group">
+                             <div class="input-group-addon"><i class="mdi mdi-home-modern"></i></div>
+                            {{filter.form.property_type}}
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                         <div class="input-group">
+                             <div class="input-group-addon"><i class="mdi mdi-hotel"></i></div>
+                             {{filter.form.bedrooms}}
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                         <div class="input-group">
+                             <div class="input-group-addon"><i class="mdi mdi-magnify-minus-outline"></i></div>
+                             {{filter.form.min_size}}
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                         <div class="input-group">
+                             <div class="input-group-addon"><i class="mdi mdi-magnify-plus-outline"></i></div>
+                             {{filter.form.max_size}}
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                         <div class="input-group">
+                             <div class="input-group-addon"><i class="mdi mdi-hot-tub"></i></div>
+                             {{filter.form.bathrooms}}
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                         <div class="input-group"><button type="submit"
+                                 class="btn btn-success btn-block no-radius font-weight-bold">SEARCH</button> </div>
+                     </div>
+                 </div>
+             </form>
+         </div>
+     </div>
+ </section>
+ <!-- End Main Slider With Form -->

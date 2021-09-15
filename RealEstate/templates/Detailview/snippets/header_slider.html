@@ -1,0 +1,55 @@
+ <!-- Property Single Slider header -->
+ <section class="site-slider">
+     <div id="siteslider" class="carousel slide" data-ride="carousel">
+         <ol class="carousel-indicators">
+         {% for image in images %}
+             <li data-target="#siteslider" data-slide-to="{{image.id}}" {% if forloop.first %} class="active" {% endif %}></li>
+             {% endfor %}
+   
+         </ol>
+         <div class="carousel-inner" role="listbox">
+            {% for image in images %}
+             <div class="carousel-item {% if forloop.first %} active {% endif %}" style="background-image: url('{{image.image.url}}')"></div>
+             {% endfor %}
+         </div>
+         <a class="carousel-control-prev" href="#siteslider" role="button" data-slide="prev">
+             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+             <span class="sr-only">Previous</span>
+         </a>
+         <a class="carousel-control-next" href="#siteslider" role="button" data-slide="next">
+             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+             <span class="sr-only">Next</span>
+         </a>
+     </div>
+     <div class="property-single-title property-single-title-gallery">
+         <div class="container">
+             <div class="row">
+                 <div class="col-lg-8 col-md-8">
+                     <h1>{{object.title}}</h1>
+                     <h6><i class="mdi mdi-home-map-marker"></i> {{object.address}}-{{object.state}}</h6>
+                 </div>
+                 <div class="col-lg-4 col-md-4 text-right">
+                     <h6 class="mt-2">For {{object.get_status_display}}</h6>
+                     <h2 class="text-success">${{object.price_display}} {% if object.status == 'rent' %}<small>/month</small>{% endif %}</h2>
+                 </div>
+             </div>
+             <hr>
+             <div class="row">
+                 <div class="col-lg-8 col-md-8">
+                     <p class="mt-1 mb-0"><strong>Property ID</strong> : {{object.property_id}} &nbsp;&nbsp; <strong>Add to
+                             favorites</strong><i class="mdi mdi-heart"></i></p>
+                 </div>
+                 <div class="col-lg-4 col-md-4 text-right">
+                     <div class="footer-social">
+                         <span>Share :</span> &nbsp;
+                         <a href="#"><i class="mdi mdi-facebook"></i></a>
+                         <a href="#"><i class="mdi mdi-twitter"></i></a>
+                         <a href="#"><i class="mdi mdi-instagram"></i></a>
+                         <a href="#"><i class="mdi mdi-google"></i></a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </section>
+ <!-- End Property Single Slider header -->

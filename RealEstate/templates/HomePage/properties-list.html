@@ -1,0 +1,45 @@
+{% load thumbnail %}
+<section class="section-padding">
+   <div class="section-title text-center mb-5">
+      <h2>Latest Properties</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+   </div>
+   <div class="container">
+      <div class="row">
+         {% for object in object_list %}
+         <div class="col-lg-4 col-md-4">
+            <div class="card card-list">
+               <a href="{% url 'detail' object.slug %}">
+                  <span
+                     class="{% if object.status == 'rent' %} badge badge-success {% else %} badge badge-info{% endif %}">For
+                     {{object.get_status_display}}</span>
+                  {% thumbnail object.image "500x500" crop="center" as im %}
+                  <img class=" card-img-top" src="{{ im.url }}">
+                  {% endthumbnail %}
+
+                  <div class="card-body">
+                     <h5 class="card-title">{{object.title}}</h5>
+                     <h6 class="card-subtitle mb-2 text-muted"><i class="mdi mdi-home-map-marker"></i>
+                        {{object.address}}</h6>
+
+                     <h2 class="text-success mb-0 mt-3">
+                        ${{object.price_display}}
+                        {% if object.status == 'rent' %}<small>/month</small>{% endif %}
+                     </h2>
+                  </div>
+                  <div class="card-footer">
+                     <span><i class="mdi mdi-sofa"></i> Beds : <strong>{{object.bedrooms}}</strong></span>
+                     <span><i class="mdi mdi-scale-bathroom"></i> Baths :
+                        <strong>{{object.bathrooms}}</strong></span>
+                     <span><i class="mdi mdi-move-resize-variant"></i> Area : <strong>{{object.area}} sq
+                           ft</strong></span>
+                  </div>
+               </a>
+            </div>
+         </div>
+         {% endfor %}
+
+      </div>
+
+   </div>
+</section>

@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      {% block meta_tags %}
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="Webartinfo">
+      <meta name="author" content="Webartinfo">
+      {% endblock meta_tags %}
+      <title>{% block title %}{% endblock title %}</title>
+      <!-- Favicon Icon -->
+      <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+      <!-- Bootstrap core CSS -->
+      <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+      <!-- Material Design Icons -->
+      <link href="{% static 'vendor/icons/css/materialdesignicons.min.css' %}" media="all" rel="stylesheet" type="text/css" />
+      <!-- Select2 CSS -->
+      <link href="{% static 'vendor/select2/css/select2-bootstrap.css' %}" />
+      <link href="{% static 'vendor/select2/css/select2.min.css' %}" rel="stylesheet" />
+      <!-- Custom styles for this template -->
+      <link href="{% static 'css/style.css' %}" rel="stylesheet">
+       <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+       <style>
+       .errorlist {
+          color:red
+       }
+       </style>
+   </head>
+    <body>
+
+    {% include 'navbar.html' %}
+
+    {% block content %}{% endblock content %}
+
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock footer %}
+
+
+       <!-- Bootstrap core JavaScript -->
+      <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <!-- Contact form JavaScript -->
+      <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+      <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+      <script src="{% static 'js/contact_me.js' %}"></script>
+      <!-- select2 Js -->
+      <script src="{% static 'vendor/select2/js/select2.min.js' %}"></script>
+      <!-- Custom -->
+      <script src="{% static 'js/custom.js' %}"></script>
+     
+   </body>
+</html>

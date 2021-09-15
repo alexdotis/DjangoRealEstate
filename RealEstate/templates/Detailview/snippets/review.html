@@ -1,0 +1,127 @@
+  {% load static %}
+  <div id="detail-review">
+      <div class="card padding-card reviews-card">
+          <div class="card-body">
+              <h5 class="card-title mb-4">[[data.count]] Reviews</h5>
+              <div v-for="object in data.results" :key="object.id" class="media mb-4">
+                  <div class="media-body">
+                      <h5 class="mt-0">[[object.user]]<small>[[object.created]]</small>
+                          <span class="star-rating float-right">
+
+                              <i v-for="star in object.review" :key="star" class="mdi mdi-star text-warning"></i>
+                              <i v-for="empty_star in 5-object.review" :key="empty_star"
+                                  class="mdi mdi-star-outline text-warning"></i>
+                              <small class="text-success">[[object.review]]/5</small>
+                          </span>
+                      </h5>
+                      <p>[[object.comment]]</p>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+      <div  class="card padding-card">
+          <div v-show='userIsRated' class="card-body">
+              <h5 class="card-title mb-4">Leave a Review</h5>
+              <form v-show="isUserLoggedIn" @submit.prevent='postData'>
+                  <div class="row">
+                      <div class="control-group form-group col-lg-4 col-md-4">
+                          <div class="controls">
+                              <label>Rating <span class="text-danger">*</span></label>
+                              <select class="form-control custom-select" v-model="review">
+                                  <option value='1'>1 Star</option>
+                                  <option value='2'>2 Star</option>
+                                  <option value='3'>3 Star</option>
+                                  <option value='4'>4 Star</option>
+                                  <option value='5'>5 Star</option>
+                              </select>
+                          </div>
+                          <li style='color:red' v-if="review_error">[[review_error]]</li>
+                      </div>
+                  </div>
+                  <div class="control-group form-group">
+                      <div class="controls">
+                          <label>Review <span class="text-danger">*</span></label>
+                          <textarea v-model="comment" rows="10" cols="100" class="form-control"></textarea>
+                      </div>
+                      <li style='color:red' v-if="comment_error">[[comment_error]]</li>
+                  </div>
+
+                  <button type="submit" class="btn btn-success">Send Message</button>
+
+              </form>
+
+              <p v-show='!isUserLoggedIn'>Please <a href="{% url 'account_login' %}" style="font-weight:bold">Log in</a>
+                  to leave your comment</p>
+
+          </div>
+      </div>
+  </div>
+
+
+
+  <script>
+      var baseUrl = 'http://127.0.0.1:8000/'
+      var app = new Vue({
+          el: '#detail-review',
+          delimiters: ['[[', ']]'],
+          data() {
+              return {
+                  data: {},
+                  isUserLoggedIn: false,
+                  comment: '',
+                  review: '',
+                  comment_error: '',
+                  review_error: '',
+                  userIsRated : true
+
+              }
+          },
+
+          mounted() {
+              this.getReviewData()
+              this.isUserLoggedIn = "{{user.is_authenticated}}" == 'True' ? true : false
+          },
+          methods: {
+              getReviewData() {
+                  axios.get(baseUrl + 'listing/api/property/{{object.slug}}/review').then((resp) => {
+                      this.data = resp.data
+                     
+                     this.data.results.map(e => {
+                          if (e.user === '{{user}}'){
+                              this.userIsRated = false
+                          }
+                      })
+                      
+                  })
+              },
+              postData() {
+                  this.comment_error = ''
+                  this.review_error = ''
+                  axios.post(baseUrl + 'listing/api/property/{{object.slug}}/review/create', data = {
+                          comment: this.comment,
+                          review: this.review,
+
+                      }, {
+                          headers: {
+                              "X-CSRFToken": '{{ csrf_token }}'
+                          }
+                      }).then((resp) => {
+                          this.getReviewData()
+                          this.comment = ''
+                          this.review = ''
+                      })
+                      .catch((error) => {
+                          if (error.response.data.comment) {
+                              this.comment_error = error.response.data.comment[0]
+                          }
+                          if (error.response.data.review) {
+                              this.review_error = error.response.data.review[0]
+                          }
+                      })
+              }
+
+          }
+
+      })
+  </script>

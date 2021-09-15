@@ -1,0 +1,40 @@
+ {% load listing_tags %}
+
+ {% similar_properties slug=object.slug as comporables %}
+ <div class="card sidebar-card">
+     <div class="card-body">
+         <h5 class="card-title mb-4">Similar Properties </h5>
+         <div id="featured-properties" class="carousel slide" data-ride="carousel">
+             <ol class="carousel-indicators">
+                 {% for property_id in comporables %}
+                 <li data-target="#featured-properties" data-slide-to="{{property_id.id}}"
+                     {% if forloop.first %}class="active" {% endif %}></li>
+                 {% endfor %}
+             </ol>
+
+             <div class="carousel-inner">
+                 {% for commporable in comporables %}
+                 <div class="carousel-item {% if forloop.first  %}active{% endif %} ">
+                     <div class="card card-list">
+                         <a href="{% url 'detail' slug=commporable.slug %}">
+                             <span {% if commporable.status == 'rent' %}class="badge badge-success"
+                                 {% else %}class="badge badge-info" {% endif %}>For
+                                 {{commporable.get_status_display}}</span>
+                             <img class="card-img-top" src="{{commporable.image.url}}" alt="Card image cap">
+                             <div class="card-body">
+                                 <h5 class="card-title">{{commporable.title}}</h5>
+                                 <h6 class="card-subtitle mb-2 text-muted"><i class="mdi mdi-home-map-marker"></i>
+                                     {{commporable.address}}</h6>
+                                 <h2 class="text-success mb-0 mt-3">
+                                     ${{commporable.price_display}}
+                                     {% if commporable.status == 'rent' %}<small>/month</small>{% endif %}
+                                 </h2>
+                             </div>
+                         </a>
+                     </div>
+                 </div>
+                 {% endfor %}
+             </div>
+         </div>
+     </div>
+ </div>

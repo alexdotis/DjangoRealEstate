@@ -1,0 +1,67 @@
+   {% load static %}
+   <div class="card padding-card">
+       <div class="card-body">
+           <h5 class="card-title mb-4">Features</h5>
+           <div class="row">
+               <div class="col-md-4">
+                   {{feature_form.as_p}}
+               </div>
+           </div>
+
+           <div id="feature_settings">
+               <div v-for="feature in features" :key="feature">
+                   <p>
+                       <label :id="feature.idExtra">[[feature.labelName]]</label>
+                       <input :id="feature.idExtra" class="form-control" type="text" :name="feature.extraFeature"
+                           maxlength="25">
+                   </p>
+                   <p>
+                       <label :id="feature.idExtraChoice">[[feature.labelNameChoice]]</label>
+                       <select :id="feature.idExtraChoice" class="form-control" type="text"
+                           :name="feature.extraFeatureChoice">
+                           <option value="" selected="">----------</option>
+                           <option value="1">YES</option>
+                           <option value="-1">NO</option>
+                       </select>
+                       <input :id="feature.extraFeatureSetChoice" type="hidden" :name="feature.extraFeatureSetId">
+                       <input :id="feature.extraFeatureSetIdProperty" type="hidden"
+                           :name='feature.extraFeatureProperty'>
+                   </p>
+               </div>
+               <button @click.prevent="addFeature" class="btn btn-info">Add Feature</button>
+           </div>
+       </div>
+   </div>
+   <div class="card padding-card">
+       <div class="card-body">
+           <h5 class="card-title mb-4">Images</h5>
+           <div class="row">
+               <div class="col-md-4">
+                   {{images_form.as_p}}
+               </div>
+           </div>
+           <div id='images_settings'>
+               <div v-for='prefix in prefixes' :key="prefix">
+                   <p>
+                       <label :for="prefix.labelID">Image:</label>
+                       <input :id="prefix.inputID" class="form-control" type="file" :name="prefix.inputName"
+                           accept="image/*">
+                       <input :id="prefix.hiddenInputID" type="hidden" :name="prefix.hiddenInputName">
+                       <input :id="prefix.hiddenInputProperty" type="hidden" :name="prefix.hiddenInputPropertyName">
+                   </p>
+               </div>
+               <button @click.prevent="imagesForm" class="btn btn-info">Add Image</button>
+           </div>
+
+       </div>
+   </div>
+
+   <div id="agent_property">
+   </div>
+
+
+   <script src="{% static 'js/subcategory_form.js' %}"></script>
+
+   <script src="{% static 'js/images-form.js' %}"></script>
+
+   <script src="{% static 'js/feature-form.js' %}"></script>

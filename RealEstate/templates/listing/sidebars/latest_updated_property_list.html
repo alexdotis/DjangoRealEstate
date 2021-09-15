@@ -1,0 +1,34 @@
+  {% load listing_tags %}
+  {% latest_updated_property_list as property_list %}
+
+  <div class="card sidebar-card">
+      <div class="card-body">
+          <h5 class="card-title mb-4">Latest Updated Properties</h5>
+          <div id="featured-properties" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+              {% for comporable_id in property_list %}
+                  <li data-target="#featured-properties" data-slide-to={{comporable_id.id}} class="active"></li>
+                  {% endfor %}
+              </ol>
+              <div class="carousel-inner">
+              {% for object in property_list %}
+                  <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                      <div class="card card-list">
+                          <a href="{% url 'detail' object.slug %}">
+                              <span class="{% if object.status == 'rent' %} badge badge-success {% else %} badge badge-info {% endif %} ">For {{object.get_status_display}}</span>
+                              <img class="card-img-top" src="{{object.image.url}}" alt="Card image cap">
+                              <div class="card-body">
+                                  <h5 class="card-title">{{object.title}}</h5>
+                                  <h6 class="card-subtitle mb-2 text-muted"><i class="mdi mdi-home-map-marker"></i> {{object.address}}</h6>
+                                  <h2 class="text-success mb-0 mt-3">
+                                      ${{object.price}} {% if object.status == 'rent' %}<small>/month</small>{% endif %}
+                                  </h2>
+                              </div>
+                          </a>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
+      </div>
+  </div>

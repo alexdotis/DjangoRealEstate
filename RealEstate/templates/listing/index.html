@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Properties{% endblock title %}
+{% block meta_tags %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Find the best Property for you">
+<meta name="author" content="Webartinfo">
+{% endblock meta_tags %}
+
+{% block content %}
+
+{% block listview %}
+{% include 'listing/snippets/slider_filter_form.html' %}
+<!-- Properties List -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                {% include 'listing/sidebars/type.html' %}
+                {% include 'listing/sidebars/status.html' %}
+                {% include 'listing/sidebars/city.html' %}
+                {% include 'listing/sidebars/latest_updated_property_list.html' %}
+            </div>
+            <div class="col-lg-8 col-md-8">
+                {% include 'listing/snippets/order_by.html' %}
+                {% include 'listing/property_list.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Properties List -->
+{% endblock listview %}
+
+
+{% endblock content %}

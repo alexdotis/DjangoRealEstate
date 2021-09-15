@@ -1,0 +1,67 @@
+  <div id="mortage">
+      <div class="card sidebar-card">
+          <div class="card-body">
+              <h5 class="card-title mb-4">Mortage Calculator</h5>
+              <form name="sentMessage" @submit.prevent='calculate'>
+                  <div class="control-group form-group">
+                      <div class="controls">
+                          <label>Sale Price <span class="text-danger">*</span></label>
+                          <input type="text" placeholder="$" class="form-control" v-model="salePrice" required>
+                      </div>
+                  </div>
+                  <div class="control-group form-group">
+                      <div class="controls">
+                          <label>Down payment <span class="text-danger">*</span></label>
+                          <input type="text" placeholder="$" class="form-control" v-model="downPayment" required>
+                      </div>
+                  </div>
+                  <div class="control-group form-group">
+                      <div class="controls">
+                          <label>Term <span class="text-danger">*</span></label>
+                          <input type="text" placeholder="Years" class="form-control" v-model="years" required>
+                      </div>
+                  </div>
+                  <div class="control-group form-group">
+                      <div class="controls">
+                          <label>Interest Rate <span class="text-danger">*</span></label>
+                          <input type="text" placeholder="%" class="form-control" v-model="interestRate" required>
+                      </div>
+                  </div>
+                  <div v-if="total" class="control-group form-group">
+                      <div class="controls">
+                          <label>Monthly Payment </label>
+                          <input type="text" :value="[[total]]" class="form-control" readonly>
+                      </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-success btn-block">CALCULATE</button>
+              </form>
+          </div>
+      </div>
+  </div>
+
+
+  <script>
+      var app = new Vue({
+          el: '#mortage',
+          delimiters: ['[[', ']]'],
+          data() {
+              return {
+                  salePrice: '',
+                  downPayment: '',
+                  years: '',
+                  interestRate: '',
+                  total: ''
+              }
+          },
+          methods: {
+              calculate() {
+                  const p = parseInt(this.salePrice) - parseInt(this.downPayment)
+                  const r = parseFloat(this.interestRate) / 100 / 12
+                  const n = parseInt(this.years) * 12
+                  this.total = parseFloat((r * p) / (1 - (1 + r) ** -n)).toFixed(2)
+
+              }
+          }
+      })
+  </script>

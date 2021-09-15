@@ -1,0 +1,29 @@
+{% load tags %}
+{% trusted_agents as agents %}
+<!-- Trusted Agents -->
+<section class="section-padding bg-white">
+   <div class="section-title text-center mb-5">
+      <h2>Trusted Agents</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+   </div>
+   <div class="container">
+      <div class="row">
+         {% for agent in agents %}
+         <div class="col-lg-4 col-md-4">
+            <div class="agents-card text-center">
+            {% if agent.image %}
+               <img class="img-fluid mb-4" src="{{agent.image.url}}" alt="">
+               {% endif %}
+               <p class="mb-4">{{agent.about|truncatewords:50}}
+               </p>
+               <a href="{% url 'agency_profile' user=agent.company_name %}">
+                  <h6 class="mb-0 text-success">{{agent.company_name}}</h6>
+               </a>
+
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+   </div>
+</section>
+<!-- End Trusted Agents -->

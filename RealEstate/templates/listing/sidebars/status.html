@@ -1,0 +1,15 @@
+{% load listing_tags %}
+<div class="card sidebar-card">
+    <div class="card-body">
+        <h5 class="card-title mb-3">Property Status</h5>
+        <ul class="sidebar-card-list">
+            {% for object in object_list|dictsort:'status' %}
+            {% ifchanged %}
+            <li><a href="{% url_query status=object.status %}"><i class="mdi mdi-chevron-right"></i> For {{object.get_status_display}}<span
+                        class="sidebar-badge">{{object.status|status_count}}</span></a>
+            </li>
+            {% endifchanged %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>

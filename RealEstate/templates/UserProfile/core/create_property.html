@@ -1,0 +1,26 @@
+{% extends 'UserProfile/index.html' %}
+{% load static %}
+
+
+{% block profile-content %}
+
+
+<div class="col-lg-9 col-md-9">
+    <form method="POST" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class="card padding-card">
+            <div class="card-body">
+                {{form.as_p}}
+            </div>
+        </div>
+        {% if user.is_agent %}
+        {% include 'UserProfile/snippets/property_extra_forms.html' %}
+        {% endif %}
+     
+        <button type="submit" class="btn btn-success">ADD PROPERTY</button>
+    </form>
+</div>
+
+
+
+{% endblock profile-content %}

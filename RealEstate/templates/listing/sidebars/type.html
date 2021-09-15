@@ -1,0 +1,14 @@
+{% load listing_tags %}
+<div class="card sidebar-card">
+    <div class="card-body">
+        <h5 class="card-title mb-3">Property Type</h5>
+        <ul class="sidebar-card-list">
+            {% for object in object_list|dictsort:'subcategory' %}
+            {% ifchanged  %}
+            <li><a href="{% url_query subcategory=object.subcategory %}"><i class="mdi mdi-chevron-right"></i> {{object.subcategory_type}} <span class="sidebar-badge">{{object.subcategory|subcategory_count}}</span></a>
+            </li>
+            {% endifchanged %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>

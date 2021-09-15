@@ -1,0 +1,114 @@
+{% extends 'Agency/index.html' %}
+
+{% block agency %}
+{% include 'snippets/breadcrumbs.html' with title='Agency Profile' current_title="Agency Profile"%}
+{% load agency_tags %}
+{% load thumbnail %}
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="card profile-sidebar">
+                    <div class="card-body">
+                        
+                       {% if object.image %} <img class="rounded img-fluid" src="{{object.image.url}}" alt="Card image cap">{% endif %}
+                        <h5 class="card-title mb-3">{{object.company_name}}</h5>
+                        <p class="card-subtitle mb-2 text-muted">
+                            {{object.address}}
+                        </p>
+                        <p>{{object.about|truncatewords:100}}</p>
+                        <hr />
+                        <div class="row mt-3 card-info">
+                            <div class="col-lg-12 col-md-12">
+                                <p><strong class="text-dark">Phone :</strong> {{object.phone}}</p>
+                                <p><strong class="text-dark">Email :</strong> {{object.user.email}}</p>
+                                <p><strong class="text-dark">Website :</strong> {{object.website}}</p>
+                                <p><strong class="text-dark">Properties Listed :</strong> {{object.user|count_properties}}
+                                </p>
+                                <p><strong class="text-dark">License :</strong> {{object.license}}</p>
+                            </div>
+                        </div>
+                        <div class="footer-social"><span>Follow : </span>
+                            <a href="#"><i class="mdi mdi-facebook"></i></a>
+                            <a href="#"><i class="mdi mdi-twitter"></i></a>
+                            <a href="#"><i class="mdi mdi-instagram"></i></a>
+                            <a href="#"><i class="mdi mdi-google"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 section-title text-left mb-3">
+                                <h3>My Properties</h3>
+                            </div>
+                            {% for agent_object in agency.object_list %}
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="card card-list">
+                                    <a href="{% url 'detail' slug=agent_object.slug %}">
+                                        <span
+                                            class="badge {% if agent_object.status == 'rent' %}badge-success {% else %}badge-info{% endif %} ">For
+                                            {{agent_object.get_status_display}}</span>
+                                        {% thumbnail agent_object.image "500x500" crop="center" as im %}
+                                        <img class="card-img-top" src="{{ im.url }}">
+                                        {% endthumbnail %}
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{agent_object.title}}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted"><i
+                                                    class="mdi mdi-home-map-marker"></i> {{agent_object.address}}</h6>
+                                            <div class="review-block-rate">
+                                                {% rating agent_object.title|average_review %}
+                                                <span class="badge-pill badge-success ml-2">
+                                                    {{agent_object.title|average_review }}
+                                                </span>
+                                            </div>
+                                            <h2 class="text-success mb-0 mt-3">
+                                                ${{agent_object.price_display}} {% if agent_object.status == 'rent' %}
+                                                <small>/m</small> {% endif %}
+                                            </h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <div class="col-lg-12 text-center">
+                                <nav class="mt-0">
+                                    <ul class="pagination justify-content-center">
+
+                                        {% if agency.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{agency.previous_page_number}}"
+                                                tabindex="-1"><i class="mdi mdi-chevron-left"></i></a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link"
+                                                href="?page={{agency.previous_page_number}}">{{agency.previous_page_number}}</a>
+                                        </li>
+                                        {% endif %}
+                                        <li class="page-item active"><a class="page-link">{{agency.number}}</a></li>
+                                        {% if agency.has_next %}
+                                        <li class="page-item"><a class="page-link"
+                                                href="?page={{agency.next_page_number}}">{{agency.next_page_number}}</a>
+                                        </li>
+
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{agency.next_page_number}}"><i
+                                                    class="mdi mdi-chevron-right"></i></a>
+                                        </li>
+                                        {% endif %}
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Agency Profile -->
+{% endblock agency %}
