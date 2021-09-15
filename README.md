@@ -24,4 +24,6 @@ You can see the template [here](https://themeforest.net/item/manland-bootstrap-l
 
 You are good to go.
 
+On `RealEstate` directory there is a `houses` folder that contains images in case you want to change or add a property.
 
+Enjoy!
