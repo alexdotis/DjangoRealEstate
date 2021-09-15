@@ -11,6 +11,14 @@ You can see the template [here](https://themeforest.net/item/manland-bootstrap-l
 **Installation**
 
 1. You can download or you can use `git clone https://github.com/alexdotis/DjangoRealEstate.git`
-
-
+2. Go to directory `RealEstate` and `pip3 install -r requirements.txt`
+3. `python3 manage.py makemigrations`
+4. `python3 manage.py migrate`
+5. You can use `python3 manage seed` to prepopulate the database with fake propeties, agents, users, blogs
+   - By default it will create 10 agents that each will have 20 properties, 30 blogs and 10 users.
+   - All agents and users have the same password `qwerty`
+   - You can use the options `--properties (int)` `--agents (int)` `--blogs (int)` `--users (int)` if you want to change the numbers
+6. `python3 manage.py createsuperuser`
+7. **Note** : Before you runserver, please go to `RealEstate/settings.py` and uncomment the comments.
+8. `python3 manage.py runserver`
 
