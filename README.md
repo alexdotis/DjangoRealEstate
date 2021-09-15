@@ -27,3 +27,9 @@ You are good to go.
 On `RealEstate` directory there is a `houses` folder that contains images in case you want to change or add a property.
 
 Enjoy!
+
+**Screenshots**
+
+![Alt Text](https://github.com/alexdotis/DjangoRealEstate/blob/main/screenshots/screenshot1.jpg)
+
+![Alt Text](https://github.com/alexdotis/DjangoRealEstate/blob/main/screenshots/screenshot2.jpg)
