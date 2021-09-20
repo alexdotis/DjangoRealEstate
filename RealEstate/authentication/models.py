@@ -11,7 +11,7 @@ def image_agent_path(instance,filename):
     return f'Agents/{instance.user.username}/{filename}'
 
 class Agent(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     about = models.TextField(verbose_name='About - Description')
     company_name = models.CharField(verbose_name='Company Name', max_length=50)
     country = models.CharField(verbose_name='Country', max_length=80)
