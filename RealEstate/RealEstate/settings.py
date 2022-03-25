@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django_filters',
     'sorl.thumbnail',
     'ckeditor',
-    
+
     # apps
     'listing',
     'authentication',
@@ -120,6 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -149,13 +150,12 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 LOGIN_REDIRECT_URL = '/'
 
-ACCOUNT_AUTHENTICATION_METHOD ='username'
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ACCOUNT_FORMS = {
-    'login':'authentication.forms.Login',
-    }
+    'login': 'authentication.forms.Login',
+}
 
 
-
-HOUSE_IMAGES =  BASE_DIR / 'houses'
+HOUSE_IMAGES = BASE_DIR / 'houses'
